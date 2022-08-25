@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="./dist/lib/geojson.js"></script>
+    <script src="./mapml/lib/geojson.js"></script>
     <link rel="stylesheet" href="styles.css">
     
-    <title>Document</title>
+    <title>Dijkstra's algorithm</title>
 
-    <script type="module" src="/dist/mapml-viewer.js"></script>
+    <script type="module" src="/mapml/mapml-viewer.js"></script>
 </head>
 <body>
     <h1>Toronto's Shortest Paths using Dijkstra's algorithm</h1>
@@ -26,13 +26,13 @@
         <p>Select Start Node: <input id="start" type="text"></p>
         <p>Select End Node  : <input id="end" type="text"></p>
         <script> 
-            let test;
+            let resultJson;
             async function query (start, end) {
                 console.log(start, end);
                 let result = await fetch(`http://localhost:3001/getpath?start=${start}&end=${end}`, {method: "GET"});
-                test = await result.json();
-                console.log(test.json);
-                let layer = geojson2mapml(test.json);
+                resultJson = await result.json();
+                console.log(resultJson.json);
+                let layer = geojson2mapml(resultJson.json);
                 // removing previous path
                 try{
                     document.getElementById("path").remove();

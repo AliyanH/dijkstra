@@ -1,0 +1,191 @@
+<html>
+<head></head>
+<body>
+    <mapml-viewer id="osmtile" projection="OSMTILE" zoom="10" lon="-75.7" lat="45.4" controls>
+      <layer- id="preview_layer" label="Canada Base Map - Transportation (CBMT)" src="https://geogratis.gc.ca/mapml/en/osmtile/cbmt/" checked="checked"></layer->
+
+      <layer- label="Geometry Collection" checked>
+        <map-meta name="projection" content="OSMTILE"></map-meta>
+        <map-feature>
+          <map-featurecaption>Geometry Collection</map-featurecaption>
+          <!-- Setting the geometry coordinates to gcrs, as the default is pcrs -->
+          <map-geometry cs="gcrs">
+            <map-geometrycollection>
+              <map-polygon class="polygon">
+                <map-coordinates>-75.5859375 45.4656690 -75.6813812 45.4533876 -75.6961441 45.4239978 -75.7249832 45.4083331 -75.7792282 45.3772317 -75.7534790 45.3294614 -75.5831909 45.3815724 -75.6024170 45.4273712 -75.5673981 45.4639834 -75.5859375 45.4656690</map-coordinates>
+              </map-polygon>
+              <map-linestring class="line">
+                <map-coordinates>-75.6168365 45.471929 -75.6855011 45.458445 -75.7016373 45.4391764 -75.7030106 45.4259255 -75.7236099 45.4208652 -75.7565689 45.4117074 -75.7833481 45.384225 -75.8197403 45.3714435 -75.8516693 45.377714</map-coordinates>
+              </map-linestring>
+              <map-point class="point">
+                <map-coordinates>-75.6916809 45.4186964</map-coordinates>
+              </map-point>
+            </map-geometrycollection>
+          </map-geometry>
+          <map-properties><h2>This is a Geometry Collection</h2></map-properties>
+        </map-feature>
+      </layer->
+    </mapml-viewer>
+
+
+
+    <mapml-viewer id="cbmtile" projection="CBMTILE" zoom="2" lat="45.5052040" lon="-75.2202344" controls>
+    <layer- label="Arizona" checked id="cmtileLayer">
+      <map-meta name="projection" content="CBMTILE"></map-meta>
+      <map-meta name="zoom" content="min=1,max=5,value=0"></map-meta>
+      <map-meta name="cs" content="gcrs"></map-meta>
+      <map-meta name="extent" content="zoom=0,top-left-column=0,top-left-row=0,bottom-right-column=5,bottom-right-row=5"></map-meta>
+      <map-link id="first" rel="stylesheet" type="text/css" href="first.css"></map-link>
+
+      <map-feature zoom="2" class="refDiff">
+        <map-properties>
+          <h1>Test</h1>
+          <a href="http://example.org/">test</a>
+        </map-properties>
+        <map-geometry cs="tilematrix">
+          <map-polygon>
+            <map-coordinates>11 11 12 11 12 12 11 12</map-coordinates>
+          </map-polygon>
+        </map-geometry>
+      </map-feature>
+
+      <map-feature zoom="2" class="refDiff">
+        <map-properties>
+          <h1>Test</h1>
+        </map-properties>
+        <map-geometry cs="pcrs">
+          <map-polygon>
+            <map-coordinates>257421 -3567196 -271745 1221771 -3896544 242811 -3183549 -2613313</map-coordinates>
+          </map-polygon>
+        </map-geometry>
+      </map-feature>
+
+      <map-feature zoom="2" class="refDiff">
+        <map-properties>
+          <h1>Test</h1>
+        </map-properties>
+        <map-geometry cs="tcrs">
+          <map-polygon>
+            <map-coordinates>2771 3106 2946 3113 2954 3210 2815 3192</map-coordinates>
+          </map-polygon>
+        </map-geometry>
+      </map-feature>
+
+      <map-feature zoom="2" class="refDiff">
+        <map-properties>
+          <h1>Arizona</h1>
+        </map-properties>
+        <map-geometry>
+          <map-polygon>
+            <map-coordinates>-109.042503 37.000263 -109.04798 31.331629 -111.074448 31.331629 -112.246513 31.704061 -114.815198 32.492741 -114.72209 32.717295 -114.524921 32.755634 -114.470151 32.843265 -114.524921 33.029481 -114.661844 33.034958 -114.727567 33.40739 -114.524921 33.54979 -114.497536 33.697668 -114.535874 33.933176 -114.415382 34.108438 -114.256551 34.174162 -114.136058 34.305608 -114.333228 34.448009 -114.470151 34.710902 -114.634459 34.87521 -114.634459 35.00118 -114.574213 35.138103 -114.596121 35.324319 -114.678275 35.516012 -114.738521 36.102045 -114.371566 36.140383 -114.251074 36.01989 -114.152489 36.025367 -114.048427 36.195153 -114.048427 37.000263 -110.499369 37.00574 -109.042503 37.000263</map-coordinates>
+          </map-polygon>
+        </map-geometry>
+      </map-feature>
+
+    </layer->
+  </mapml-viewer>
+
+
+
+      <script type="module">
+        import {mapml2geojson, geojson2mapml} from "./geojson.js";
+
+        //mapml2geojson(document.querySelector("layer-"));
+        let point = {
+           "title": "Point Geometry",
+           "type": "FeatureCollection",
+           "features": [{
+               "type": "Feature",
+               "geometry": {
+           "type": "Point",
+           "coordinates": [-75.6916809, 45.4186964]
+       },
+               "properties": {
+           "prop0": "This is a Point"
+       }
+           }]
+          };
+
+        
+        let cmtile = {};
+
+        //console.log(geojson2mapml(point, "<h1>Bobs <h2>This is a point</h2></h1>"));
+
+        //let pointstring = "{'title': 'Point Geometry','type': 'FeatureCollection','features': [{'type': 'Feature','geometry': {'type': 'Point','coordinates': [-75.6916809, 45.4186964]},'properties': {'prop0': 'This is a Point'}}]}";
+        let pointstring = '{"title":"Point Geometry","type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[-75.6916809,45.4186964]},"properties":{"prop0":"This is a Point"}}]}';
+        
+        console.log(geojson2mapml(pointstring));
+        console.log(mapml2geojson(document.querySelector('layer-')));
+        
+        console.log(mapml2geojson(document.getElementById('cbmtile').children[0], null, false));
+        let cbm = mapml2geojson(document.getElementById('cbmtile').children[0]);
+        //console.log(cbm);
+        let osm = geojson2mapml(cbm);
+
+        document.getElementById('osmtile').appendChild(osm);
+
+        let line = {
+    "type": "Feature", 
+    "name": "test",
+    "geometry": {
+        "crs": 
+        {
+            "type": "name", 
+            "properties": {"name": "EPSG:4326"}
+        }, 
+        "type": "MultiLineString", 
+        "coordinates": [
+            [
+                [-79.3931594, 43.6663676], [-79.3931489, 43.6663109], [-79.3931403, 43.6662448], [-79.3931416, 43.6662156], [-79.3931461, 43.6661878], [-79.3931575, 43.6661198], [-79.3931795, 43.6660522]
+            ], [
+                [-79.3931795, 43.6660522], [-79.3932025, 43.666014], [-79.3932661, 43.6659397], [-79.3933295, 43.6658771]
+            ], [
+                [-79.3933295, 43.6658771], [-79.3935039, 43.6657594], [-79.3936341, 43.6656486], [-79.3936833, 43.6655978], [-79.3937301, 43.6655395], [-79.3937772, 43.6654721], [-79.393823, 43.6653845], [-79.3938525, 43.6653208], [-79.3938825, 43.665247]
+            ], [[-79.3938825, 43.665247], [-79.3939147, 43.6651098]
+            ], [[-79.3939147, 43.6651098], [-79.3939085, 43.6650441]
+            ], [[-79.3939085, 43.6650441], [-79.3938967, 43.6649568]
+            ], [[-79.3938967, 43.6649568], [-79.3938762, 43.6648891], [-79.39385, 43.6647979], [-79.3937955, 43.6646726]
+            ], [[-79.3937955, 43.6646726], [-79.3936861, 43.6643875]
+            ], [[-79.3936861, 43.6643875], [-79.3936224, 43.6642139]
+            ], [[-79.3936224, 43.6642139], [-79.3935068, 43.6639071], [-79.3934766, 43.6638317]
+            ], [[-79.3934766, 43.6638317], [-79.3932391, 43.6632705]
+            ], [[-79.3932391, 43.6632705], [-79.3931131, 43.6629433]
+            ], [[-79.3931131, 43.6629433], [-79.3930071, 43.6626748], [-79.3929435, 43.6625369], [-79.3929052, 43.6624866], [-79.3928644, 43.6624313]
+            ], [[-79.3928644, 43.6624313], [-79.3926178, 43.6621106], [-79.3924788, 43.66192], [-79.3924469, 43.661867]
+            ], [[-79.3924469, 43.661867], [-79.3925482, 43.6618428]
+            ], [[-79.3925482, 43.6618428], [-79.3926128, 43.6618246], [-79.3926592, 43.6617661], [-79.392749, 43.6616931], [-79.3929621, 43.6616327]
+            ], [[-79.3929621, 43.6616327], [-79.3932334, 43.6615557]
+            ], [[-79.3932334, 43.6615557], [-79.3933788, 43.6615144], [-79.393646, 43.6614567], [-79.3938334, 43.6614163], [-79.393976, 43.6613929]
+            ], [[-79.393976, 43.6613929], [-79.3939383, 43.6612467]
+            ], [[-79.3939383, 43.6612467], [-79.3940025, 43.6612111]
+            ], [[-79.3940025, 43.6612111], [-79.3943081, 43.6611449], [-79.3946625, 43.6610814], [-79.3947038, 43.6610599]
+            ], [[-79.3947038, 43.6610599], [-79.3947115, 43.6610161], [-79.3946561, 43.6608641], [-79.3946225, 43.6607522], [-79.3946396, 43.6606392], [-79.3944937, 43.6602656]
+            ], [[-79.3944937, 43.6602656], [-79.3944623, 43.6601974]
+            ], [[-79.3944623, 43.6601974], [-79.3942311, 43.6596311]
+            ], [[-79.3942311, 43.6596311], [-79.3941225, 43.6593652], [-79.3941131, 43.6593425]
+            ], [[-79.3941131, 43.6593425], [-79.3940882, 43.6592818], [-79.3940514, 43.6592653], [-79.3940144, 43.6591954]
+            ], [[-79.3940144, 43.6591954], [-79.3940976, 43.6591796]
+            ], [[-79.3940976, 43.6591796], [-79.3941937, 43.6591596]
+            ], [[-79.3941937, 43.6591596], [-79.3942498, 43.6591358], [-79.3947619, 43.6590298]
+            ], [[-79.3947619, 43.6590298], [-79.3951739, 43.6589403], [-79.3953623, 43.6589005], [-79.3955435, 43.6588642]
+            ], [[-79.3955435, 43.6588642], [-79.3957944, 43.6588255]
+            ], [[-79.3957944, 43.6588255], [-79.3958525, 43.6588136], [-79.3959169, 43.6588095]
+            ], [[-79.3959169, 43.6588095], [-79.396119, 43.6587719]
+            ], [[-79.396119, 43.6587719], [-79.396066, 43.6587342], [-79.3960087, 43.6587071]
+            ], [[-79.3960087, 43.6587071], [-79.3959848, 43.6586959]
+            ], [[-79.3959848, 43.6586959], [-79.3959692, 43.6586846]
+            ], [[-79.3959692, 43.6586846], [-79.3958967, 43.6586434], [-79.3958379, 43.6585948]
+            ], [[-79.3958379, 43.6585948], [-79.3958263, 43.6585723], [-79.3957647, 43.6584352], [-79.3957358, 43.658362], [-79.3956962, 43.6582869]
+            ], [[-79.3956962, 43.6582869], [-79.3955969, 43.6581014]
+            ], [[-79.3955969, 43.6581014], [-79.3954863, 43.6578468], [-79.3953744, 43.6575785], [-79.3951565, 43.6570511], [-79.3951246, 43.6569704], [-79.3951016, 43.6569204], [-79.3946662, 43.6558243], [-79.3946437, 43.6557736], [-79.3946217, 43.6557241], [-79.3942471, 43.6548402], [-79.3942317, 43.6548017], [-79.3942143, 43.6547595], [-79.3940342, 43.6543234], [-79.3938631, 43.653893]
+            ]
+            ]
+    }, 
+    "properties": "Path"
+};
+console.log(geojson2mapml(line));
+//document.getElementById('osmtile').insertAdjacentHTML('beforeend', line);
+
+      </script>
+</body>
+</html>

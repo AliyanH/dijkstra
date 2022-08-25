@@ -13,7 +13,7 @@ let client = new Client({
 })
 app.get("/", (req, res) => res.sendFile(`${__dirname}/index.html`))
 app.get("/styles.css", (req, res) => res.sendFile(`${__dirname}/styles.css`))
-app.use('/dist', (req, res) => {
+app.use('/mapml', (req, res) => {
     res.sendFile(__dirname + req.originalUrl)
 })
 app.get("/getpath", async (req, res) => {
@@ -32,28 +32,9 @@ app.get("/getpath", async (req, res) => {
 })
 app.listen(3001, () => console.log("Web Server is listening... on port 3001"));
 
-//function (start, end) {
-//    
-//}
-
 start();
-
-
 async function start() {
     await connect();
-    //const results = await getResults(start, end)
-    //console.log(results);
-    //client.end()
-
-    //let res;
-    //client.connect()
-    //.then(() => console.log("Connection Successful"))
-    //.then(() => client.query(text))
-    //.then((results) => console.log(JSON.stringify(results.rows[0])))
-    //.catch(e => console.log(e))
-    //.finally(() => client.end())
-
-    //console.log(res)
 }
 async function connect() {
     try {
