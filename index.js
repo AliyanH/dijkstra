@@ -16,6 +16,10 @@ app.get("/styles.css", (req, res) => res.sendFile(`${__dirname}/styles.css`))
 app.use('/mapml', (req, res) => {
     res.sendFile(__dirname + req.originalUrl)
 })
+//Used for Testing
+app.get("/test", (req, res) => {
+  res.send("<h1>It's working</h1>")
+})
 app.get("/getpath", async (req, res) => {
     let result = {};
     try{
