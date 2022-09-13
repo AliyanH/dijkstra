@@ -1,6 +1,6 @@
 html, body{
     height: 100%;
-    overflow: hidden;
+
 }
 mapml-viewer:defined {
     width: 100%;
@@ -19,11 +19,11 @@ mapml-viewer:defined {
     position: relative;
     left:10%;
     width: 80%; 
-    height: 40%;
+    height: 60%;
     margin-top: 2%;
     display: inline-block;
 }
 h1 {
     text-align: center;
-    margin-top: 5%;
+    margin-top: 2%;
 }
