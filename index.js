@@ -9,10 +9,12 @@ let client = new Client({
     password: "password",
     host: "localhost",
     port: 5432,
-    database: "route"
+    database: "route1"
 })
 app.get("/", (req, res) => res.sendFile(`${__dirname}/index.html`))
 app.get("/styles.css", (req, res) => res.sendFile(`${__dirname}/styles.css`))
+app.get("/osm.mapml", (req, res) => res.sendFile(`${__dirname}/osm.mapml`))
+app.get("/labelled_imagery.mapml", (req, res) => res.sendFile(`${__dirname}/labelled_imagery.mapml`))
 app.use('/mapml', (req, res) => {
     res.sendFile(__dirname + req.originalUrl)
 })
